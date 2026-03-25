@@ -1,0 +1,267 @@
+/* =============================================
+   COMPLAINTS PAGE
+   ============================================= */
+
+/* Complaint form card */
+.complaint-form-card {
+  max-width: 760px;
+}
+
+/* =============================================
+   COMPLAINT DETAIL
+   ============================================= */
+.complaint-detail-page {
+  max-width: 1300px;
+}
+
+.complaint-header-card {
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--primary);
+}
+
+.complaint-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.complaint-id {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.complaint-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.complaint-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Layout */
+.complaint-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.complaint-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.complaint-sidebar {
+  position: sticky;
+  top: 80px;
+}
+
+/* Description */
+.complaint-description {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+/* Attachments */
+.attachments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.attachment-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  background: var(--light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  color: var(--primary);
+  text-decoration: none;
+  transition: background var(--transition);
+}
+
+.attachment-item:hover {
+  background: #ede9fe;
+  text-decoration: none;
+}
+
+/* Resolution card */
+.resolution-card {
+  border-color: var(--success);
+  border-left: 4px solid var(--success);
+}
+
+.resolution-section {
+  margin-bottom: 1rem;
+}
+
+.resolution-section:last-child {
+  margin-bottom: 0;
+}
+
+.resolution-section p {
+  font-size: 0.875rem;
+  color: var(--text);
+  margin-top: 0.25rem;
+  line-height: 1.6;
+}
+
+/* Actions panel */
+.actions-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.action-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.action-section:first-child {
+  padding-top: 0;
+}
+
+.action-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* =============================================
+   TIMELINE
+   ============================================= */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  position: relative;
+  padding-bottom: 1.25rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -1.5rem;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px var(--primary);
+  flex-shrink: 0;
+}
+
+.timeline-content {
+  flex: 1;
+  background: var(--light);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+}
+
+.timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-action {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: capitalize;
+}
+
+.timeline-time {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.timeline-by {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+
+.timeline-comment {
+  font-size: 0.875rem;
+  color: var(--text);
+  margin-top: 0.4rem;
+  line-height: 1.5;
+}
+
+.timeline-changes {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+/* =============================================
+   PRIORITY / STATUS HELPERS
+   ============================================= */
+.priority-low     { color: var(--success); }
+.priority-medium  { color: var(--warning); }
+.priority-high    { color: #f97316; }
+.priority-urgent  { color: var(--danger); }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 1024px) {
+  .complaint-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .complaint-sidebar {
+    position: static;
+  }
+}
