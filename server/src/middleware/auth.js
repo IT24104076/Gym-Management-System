@@ -12,7 +12,13 @@ const protect = async (req, res, next) => {
     return res.status(401).json({ success: false, message: 'Not authorized, no token provided' });
   }
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret');
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret');
+  } catch (err) {
+    return res.status(401).json({ success: false, message: 'Invalid or expired token' });
+  }
+
   const user = await User.findById(decoded.id);
 
   if (!user) {
