@@ -14,7 +14,7 @@ function formatDate(d) {
 }
 
 const CATEGORIES = [
-  'equipment', 'cleanliness', 'staff', 'billing', 'safety', 'scheduling', 'facilities', 'other',
+  'membership', 'billing', 'trainer', 'facility', 'equipment', 'cleanliness', 'technical', 'other',
 ]
 
 export default function ComplaintsList() {
