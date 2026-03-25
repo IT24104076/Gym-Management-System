@@ -33,7 +33,7 @@ export default function Profile() {
     const fetchProfile = async () => {
       try {
         const res = await authService.getMe()
-        const data = res.data?.data || res.data
+        const data = res.data?.data?.user || res.data?.data || res.data
         setProfile(data)
         setForm({
           name: data.name || '',
@@ -71,8 +71,8 @@ export default function Profile() {
       const formData = new FormData()
       Object.entries(form).forEach(([k, v]) => { if (v) formData.append(k, v) })
       if (avatarFile) formData.append('avatar', avatarFile)
-      const res = await userService.updateProfile(user._id || user.id, formData)
-      const updated = res.data?.data || res.data
+      const res = await userService.updateProfile(formData)
+      const updated = res.data?.data?.user || res.data?.data || res.data
       updateUser(updated)
       setProfile(updated)
       setSuccess('Profile updated successfully.')

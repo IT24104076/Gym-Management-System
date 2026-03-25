@@ -59,6 +59,9 @@ const seed = async () => {
       status: 'active',
       phone: '555-0004',
       address: '4 Member Lane',
+      membershipPlan: 'premium',
+      membershipStart: new Date('2024-01-01'),
+      membershipExpiry: new Date('2024-12-31'),
     },
     {
       name: 'Bob Member',
@@ -68,6 +71,9 @@ const seed = async () => {
       status: 'active',
       phone: '555-0005',
       address: '5 Member Lane',
+      membershipPlan: 'standard',
+      membershipStart: new Date('2024-03-01'),
+      membershipExpiry: new Date('2025-02-28'),
     },
     {
       name: 'Carol Member',
@@ -77,6 +83,9 @@ const seed = async () => {
       status: 'active',
       phone: '555-0006',
       address: '6 Member Lane',
+      membershipPlan: 'basic',
+      membershipStart: new Date('2024-06-01'),
+      membershipExpiry: new Date('2025-05-31'),
     },
   ]);
 

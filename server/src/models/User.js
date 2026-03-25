@@ -54,6 +54,17 @@ const userSchema = new mongoose.Schema(
     lastLogin: {
       type: Date,
     },
+    membershipPlan: {
+      type: String,
+      enum: ['none', 'basic', 'standard', 'premium'],
+      default: 'none',
+    },
+    membershipStart: {
+      type: Date,
+    },
+    membershipExpiry: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );

@@ -27,11 +27,12 @@ router.get('/my', protect, authorize('member', 'trainer'), (req, res, next) => {
 }, getAllComplaints);
 
 router.get('/:id', protect, getComplaintById);
-router.put('/:id/status', protect, authorize('admin', 'manager'), updateComplaintStatus);
-router.put('/:id/assign', protect, authorize('admin', 'manager'), assignComplaint);
+router.patch('/:id/status', protect, authorize('admin', 'manager'), updateComplaintStatus);
+router.patch('/:id/assign', protect, authorize('admin', 'manager'), assignComplaint);
+router.post('/:id/comments', protect, addComment);
 router.post('/:id/comment', protect, addComment);
-router.put('/:id/escalate', protect, authorize('admin', 'manager'), escalateComplaint);
-router.put('/:id/resolve', protect, authorize('admin', 'manager'), resolveComplaint);
+router.patch('/:id/escalate', protect, authorize('admin', 'manager'), escalateComplaint);
+router.patch('/:id/resolve', protect, authorize('admin', 'manager'), resolveComplaint);
 router.get('/:id/history', protect, getComplaintHistory);
 router.delete('/:id', protect, authorize('admin'), deleteComplaint);
 

@@ -4,15 +4,34 @@ const ActivityLog = require('../models/ActivityLog');
 const { successResponse } = require('../utils/apiResponse');
 
 const getStats = async (req, res) => {
-  const [byStatus, byCategory, byPriority, overdueCount, total] = await Promise.all([
+  const [
+    complaintsByStatus,
+    complaintsByCategory,
+    complaintsByPriority,
+    overdueComplaints,
+    totalComplaints,
+    totalUsers,
+  ] = await Promise.all([
     Complaint.aggregate([{ $group: { _id: '$status', count: { $sum: 1 } } }]),
     Complaint.aggregate([{ $group: { _id: '$category', count: { $sum: 1 } } }]),
     Complaint.aggregate([{ $group: { _id: '$priority', count: { $sum: 1 } } }]),
     Complaint.countDocuments({ isOverdue: true }),
     Complaint.countDocuments(),
+    User.countDocuments(),
   ]);
 
-  return successResponse(res, { total, byStatus, byCategory, byPriority, overdueCount });
+  const openEntry = complaintsByStatus.find((s) => s._id === 'open');
+  const openComplaints = openEntry ? openEntry.count : 0;
+
+  return successResponse(res, {
+    totalUsers,
+    totalComplaints,
+    openComplaints,
+    overdueComplaints,
+    complaintsByStatus,
+    complaintsByCategory,
+    complaintsByPriority,
+  });
 };
 
 const getResolutionMetrics = async (req, res) => {
@@ -62,12 +81,24 @@ const getUserStats = async (req, res) => {
 
 const getRecentActivity = async (req, res) => {
   const logs = await ActivityLog.find()
-    .populate('userId', 'name email')
+    .populate('userId', 'name email role')
     .populate('targetUserId', 'name email')
     .sort({ createdAt: -1 })
-    .limit(10);
+    .limit(15);
 
-  return successResponse(res, { logs });
+  const formatted = logs.map((log) => ({
+    _id: log._id,
+    action: log.action,
+    details: log.details,
+    description: log.userId
+      ? `${log.userId.name} — ${log.action}${log.details ? ': ' + log.details : ''}`
+      : `${log.action}${log.details ? ': ' + log.details : ''}`,
+    user: log.userId,
+    targetUser: log.targetUserId,
+    createdAt: log.createdAt,
+  }));
+
+  return successResponse(res, { logs: formatted });
 };
 
 module.exports = {

@@ -91,6 +91,10 @@ const login = async (req, res) => {
       role: user.role,
       status: user.status,
       avatar: user.avatar,
+      phone: user.phone,
+      membershipPlan: user.membershipPlan,
+      membershipStart: user.membershipStart,
+      membershipExpiry: user.membershipExpiry,
       lastLogin: user.lastLogin,
     },
   });

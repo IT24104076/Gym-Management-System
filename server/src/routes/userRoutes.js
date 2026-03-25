@@ -22,9 +22,9 @@ router.get('/stats', protect, authorize('admin', 'manager'), getStats);
 router.get('/:id', protect, getUserById);
 router.put('/profile', protect, uploadSingle, validateUpdateProfile, updateProfile);
 
-router.put('/:id/activate', protect, authorize('admin', 'manager'), activateUser);
-router.put('/:id/suspend', protect, authorize('admin', 'manager'), suspendUser);
-router.put('/:id/deactivate', protect, authorize('admin', 'manager'), deactivateUser);
+router.patch('/:id/activate', protect, authorize('admin', 'manager'), activateUser);
+router.patch('/:id/suspend', protect, authorize('admin', 'manager'), suspendUser);
+router.patch('/:id/deactivate', protect, authorize('admin', 'manager'), deactivateUser);
 
 router.get('/:id/activity', protect, authorize('admin', 'manager'), getUserActivity);
 router.delete('/:id', protect, authorize('admin'), deleteUser);
